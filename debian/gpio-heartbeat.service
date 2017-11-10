@@ -1,0 +1,12 @@
+[Unit]
+Description=GPIO Heartbeat
+
+[Service]
+ExecStart=/usr/sbin/gpio-heartbeat
+Restart=always
+RestartSec=5s
+WatchdogSec=30s
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target

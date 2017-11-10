@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -r /etc/default/gpio-heartbeat ]; then
+    . /etc/default/gpio-heartbeat
+
+gpio=${GPIOHEARTBEAT=gpio20}
+echo out > /sys/class/gpio/${gpio}/direction
+
+while true; do
+    VAL=`cat /sys/class/gpio/${gpio}/value`
+    echo $((VAL^=1)) > /sys/class/gpio/${gpio}/value
+    sleep 1
+done

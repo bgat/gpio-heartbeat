@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+export DH_VERBOSE=1
+
+ARCH=$(DEB_HOST_GNU_CPU)
+CROSS_COMPILE=$(DEB_HOST_GNU_TYPE)-
+
+%:
+	dh $@ --with=systemd
+

@@ -1,0 +1,13 @@
+Source: gpio-heartbeat
+Section: embedded
+Priority: extra
+Maintainer: Bill Gatliff <bgat@billgatliff.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.8
+
+Package: gpio-heartbeat
+Architecture: any
+Description: GPIO Heartbeat
+ Generates a 1Hz heartbeat pulse on a GPIO pin
+Depends:
+ ${misc:Depends}
