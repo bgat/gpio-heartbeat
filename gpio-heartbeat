@@ -4,11 +4,17 @@ if [ -r /etc/default/gpio-heartbeat ]; then
     . /etc/default/gpio-heartbeat
 fi
 
-gpio=${GPIOHEARTBEAT=gpio20}
-echo out > /sys/class/gpio/${gpio}/direction
+gpio=${GPIOHEARTBEAT=20}
+
+[ ! -w /sys/class/gpio/gpio${gpio}/direction ] && echo $gpio > /sys/class/gpio/export
+
+sys=/sys/class/gpio/gpio${gpio}
+dir=${sys}/direction
+val=${sys}/value
+echo out > $dir
 
 while true; do
-    VAL=`cat /sys/class/gpio/${gpio}/value`
-    echo $((VAL^=1)) > /sys/class/gpio/${gpio}/value
+    VAL=`cat /sys/class/gpio/gpio${gpio}/value`
+    echo $((VAL^=1)) > $val
     sleep 1
 done
