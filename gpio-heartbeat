@@ -2,6 +2,7 @@
 
 if [ -r /etc/default/gpio-heartbeat ]; then
     . /etc/default/gpio-heartbeat
+fi
 
 gpio=${GPIOHEARTBEAT=gpio20}
 echo out > /sys/class/gpio/${gpio}/direction
